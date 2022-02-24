@@ -11,6 +11,7 @@ import javax.validation.constraints.Min;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,13 +28,15 @@ import com.learning.exception.NoDataFoundException;
 import com.learning.repo.FoodItemRepo;
 
 @RestController
-@RequestMapping("/food")
+@RequestMapping("/api/food")
 @Validated
+
 public class FoodController {
 
 	@Autowired
 	FoodItemRepo foodItemRepo;
 	@PostMapping(value = "/")
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> createFood(@Valid @RequestBody FoodItem foodItem){
 		FoodItem foodItem2 = foodItemRepo.save(foodItem);		
 		return ResponseEntity.status(201).body(foodItem2);

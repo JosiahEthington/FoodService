@@ -41,7 +41,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@NotBlank
-	private String name;
+	private String username;
 	@NotBlank
 	@Email
 	private String email;
@@ -62,7 +62,7 @@ public class User {
 	public User(@NotBlank String name, @NotBlank @Email String email, @NotBlank String password, Set<Address> addresses,
 			Set<Role> roles) {
 		super();
-		this.name = name;
+		this.username = name;
 		this.email = email;
 		this.password = password;
 		this.addresses = addresses;

@@ -3,6 +3,7 @@ package com.learning.advice;
 
 
 import javax.validation.ConstraintViolationException;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,8 @@ import com.learning.exception.NoDataFoundException;
 import com.learning.exception.UserAlreadyExistsException;
 
 @org.springframework.web.bind.annotation.ControllerAdvice
-public class ControllerAdvice extends ResponseEntityExceptionHandler {
+public class ControllerAdvice extends ResponseEntityExceptionHandler{	
+	
 	@ExceptionHandler(UserAlreadyExistsException.class)
 	public ResponseEntity<?> nameAlreadyExistsException(UserAlreadyExistsException e){
 //		Map<String, String> map = new HashMap<>();
@@ -67,12 +69,14 @@ public class ControllerAdvice extends ResponseEntityExceptionHandler {
 		apiError.setMessage(e.getMessage());
 		return buildResponseEntity(apiError);
 	}
-	@ExceptionHandler(Exception.class)
-	protected ResponseEntity<?> handleMethodException(Exception e){
-		ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR);
-		apiError.setMessage(e.getMessage());
-		return buildResponseEntity(apiError);
-	}
+//	@ExceptionHandler(Exception.class)
+//	protected ResponseEntity<?> handleMethodException(Exception e){
+//		ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR);
+//		apiError.setMessage(e.getMessage());
+//		return buildResponseEntity(apiError);
+//	}
+
+
 	
 	
 }

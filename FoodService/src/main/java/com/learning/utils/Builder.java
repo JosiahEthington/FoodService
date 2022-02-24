@@ -24,7 +24,7 @@ public class Builder {
 		UserResponse userResponse = new UserResponse();
 		userResponse.setEmail(user.getEmail());
 		userResponse.setId(user.getId());
-		userResponse.setName(user.getName());
+		userResponse.setName(user.getUsername());
 		userResponse.setDoj(user.getDoj());
 		Set<String> roles = new HashSet<>();
 		user.getRoles().forEach(f->{
@@ -85,7 +85,7 @@ public class Builder {
 			address.setUser(user);
 			addresses.add(address);
 		});
-		user.setName(request.getName());
+		user.setUsername(request.getName());
 		user.setAddresses(addresses);
 		user.setEmail(request.getEmail());
 		user.setPassword(request.getPassword());
