@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.learning.dto.Address;
 import com.learning.dto.Role;
@@ -20,6 +21,7 @@ public class Builder {
 //	{
 //		
 //	}
+
 	public static UserResponse buildUserResponse(User user) {
 		UserResponse userResponse = new UserResponse();
 		userResponse.setEmail(user.getEmail());

@@ -18,12 +18,12 @@ public class LogAspect {
 	@Before("execution(* com.learning.controller.*.*(..))")
 	// Activates for all classes in controller, and all methods in that class, with n(..) arguments in those classes.
 	public void logRestController() {
-		LOGGER.info("before advice called");
+		//LOGGER.info("before advice called");
 	}
 	
 	@After("execution(* com.learning.controller.UserController.*(..))")
 	public void logRestController2() {
-		LOGGER.info("After advice called");
+		//LOGGER.info("After advice called");
 	}
 	
 	@Pointcut("within(@org.springframework.stereotype.Repository *)"+

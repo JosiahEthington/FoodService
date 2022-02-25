@@ -24,7 +24,7 @@ public class JwtUtils {
 	@Value("${com.learning.jwtSecret}")
 	private String jwtSecret;
 	@Value("${com.learning.jwtExpirationMs}")
-	private long jwtExpirationMs;
+	private Long jwtExpirationMs;
 	
 	public String generateToken(Authentication authentication) {
 		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
@@ -37,7 +37,7 @@ public class JwtUtils {
 	
 	public boolean validateJwtToken(String authToken) {
 		try {
-			Jwts.parser().setSigningKey(jwtSecret).parseClaimsJwt(authToken);
+			Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
 			return true;
 		} catch (ExpiredJwtException e) {
 			logger.error("JWT token is expired: {}", e.getMessage());
@@ -60,7 +60,7 @@ public class JwtUtils {
 	public String getUsernameFromJwtToken(String authToken) {
 		return Jwts.parser()
 				.setSigningKey(jwtSecret)
-				.parseClaimsJwt(authToken)
+				.parseClaimsJws(authToken)
 				.getBody()
 				.getSubject();
 	}

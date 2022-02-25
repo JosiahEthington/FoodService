@@ -35,7 +35,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString(exclude = {"addresses","roles"})
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "email")})
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = "email"),
+		@UniqueConstraint(columnNames = "username")})
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,7 +51,7 @@ public class User {
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate doj;
 	@JsonIgnore
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Address> addresses;
 	
 	@ManyToMany

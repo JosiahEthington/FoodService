@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name= "food_tbl")
+@Table(name= "food")
 public class FoodItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
